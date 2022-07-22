@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "db:seed": "npx prisma db seed"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^4.1.0",
+    "argon": "^2.0.21",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "prisma": "^4.1.0"
+  }
+}
