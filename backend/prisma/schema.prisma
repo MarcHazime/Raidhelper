@@ -10,28 +10,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum PerkType {
-  weapon
-  armor
-}
-
-model Users {
+model User {
   id       Int    @id @default(autoincrement())
   pseudo   String @unique @db.VarChar(150)
   password String @db.VarChar(150)
 }
 
+//** si pas de location perk peut être mis partout sinon locationId
+
 model Perk {
-  id         Int           @id @default(autoincrement())
-  name       String        @unique @db.VarChar(150)
-  location   PerkLocation? @relation(fields: [locationId], references: [id])
-  locationId Int?
-  stats      String        @db.VarChar(255)
+  id         Int             @id @default(autoincrement())
+  name       String          @unique @db.VarChar(150)
+  stats      String          @db.VarChar(255)
+  types      EquipmentType[]
+  equipments Equipment[]
 }
 
-model PerkLocation {
-  id    Int      @id @default(autoincrement())
-  name  String   @unique @db.VarChar(150)
-  type  PerkType
-  perks Perk[]
+model Slot {
+  id         Int             @id @default(autoincrement())
+  name       String          @unique @db.VarChar(150)
+  equipments Equipment[]
+  types      EquipmentType[]
+}
+
+model Equipment {
+  id              Int           @id @default(autoincrement())
+  name            String        @unique @db.VarChar(150)
+  slot            Slot          @relation(fields: [slotId], references: [id])
+  slotId          Int
+  type            EquipmentType @relation(fields: [equipmentTypeId], references: [id])
+  equipmentTypeId Int
+  perks           Perk[]
+}
+
+model EquipmentType {
+  id         Int         @id @default(autoincrement())
+  name       String      @unique @db.VarChar(150)
+  equipments Equipment[]
+  perks      Perk[]
+  slots      Slot[]
 }
