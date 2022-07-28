@@ -8,7 +8,7 @@ export default function UserPage() {
     return (
         <div className="bg-yellow-400 ">
             <Navbar />
-            <div className="grid-cols-2">
+            <div className=" mx-auto h-screen grid grid-cols-4">
                 <SelectPerks text={"Arme 1"} />
                 <SelectPerks text={"Arme 2"} />
                 <SelectPerks text={"Tête"} />

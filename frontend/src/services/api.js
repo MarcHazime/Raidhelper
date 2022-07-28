@@ -10,11 +10,19 @@ export const fetchPerks = async (data) => {
   }
 };
 
+export const fetchSlots = async (data) => {
+  try {
+    return (await axios.get(`${API_URL}/slots`)).data;
+  } catch (err) {
+    return [];
+  }
+};
+
 
 export const login = async (data) => {
   return (await axios.post(`${API_URL}/login`, data)).data;
 }
 
 export const createUser = async (data) => {
-  return (await axios.post(`${API_URL}/users`)).data
+  return (await axios.post(`${API_URL}/users`, data)).data
 }
