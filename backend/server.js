@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require("cors")
 const app = express()
-const port = 5000
+const port = process.env.port || 5000
 const prisma = require("./services/db")
 const argon2 = require("argon2")
 
