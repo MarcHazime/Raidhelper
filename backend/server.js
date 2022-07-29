@@ -9,9 +9,7 @@ const argon2 = require("argon2")
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
-    optionsSuccessStatus: 200,
-    credentials: true
+    origin: "http://localhost:5173"
 }))
 
 app.use(express.json());

@@ -29,8 +29,8 @@ model Perk {
 model Slot {
   id         Int             @id @default(autoincrement())
   name       String          @unique @db.VarChar(150)
-  equipments Equipment[]     
-  types      EquipmentType[] 
+  equipments Equipment[]
+  types      EquipmentType[]
 }
 
 model Equipment {
