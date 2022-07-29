@@ -24,9 +24,12 @@ app.get('/perks', async (req, res) => {
 })
 
 app.get('/slots', async (req, res) => {
-    res.send(await prisma.Slot.findMany({ include: { types: true } }))
+    res.send(await prisma.Slot.findMany({ include: { types: true }}))
 })
 
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
 
 
 app.post("/login", async (req, res) => {
