@@ -24,10 +24,6 @@ app.get('/perks', async (req, res) => {
 })
 
 app.get('/slots', async (req, res) => {
-    res.send(await prisma.Slot.findMany())
-})
-
-app.get('/slots', async (req, res) => {
     res.send(await prisma.Slot.findMany({ include: { types: true } }))
 })
 
