@@ -14,13 +14,14 @@ async function main() {
     "Amulette",
     "Anneau",
     "Boucle d'oreille",
-    "Bouclier"
+    "Bouclier",
+    "Mains"
   ];
 
   const slotData = {};
 
   for (const slot of slots) {
-    slotData[slot] = (await db.Slot.create({ data: { name: slot } }))
+    slotData[slot] = (await db.Slots.create({ data: { name: slot } }))
   }
 
   const equipmentTypeData = {};
@@ -43,7 +44,123 @@ async function main() {
       slots: {
         connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
       }
+    },
+    {
+      name: "Hachette",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Bâton de feu",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Bâton de vie",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Gantelet de glace",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Gantelet du néant",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Tromblon",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Epée",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Mousquet",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Rapière",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Marteau",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Lance",
+      slots: {
+        connect: [{ id: slotData["Arme 1"].id }, { id: slotData["Arme 2"].id }]
+      }
+    },
+    {
+      name: "Bouclier",
+      slots: {
+        connect: [{ id: slotData["Bouclier"].id }]
+      }
+    },
+    {
+      name: "Mains",
+      slots: {
+        connect: [{ id: slotData["Mains"].id }]
+      }
+    },
+    {
+      name: "Pieds",
+      slots: {
+        connect: [{ id: slotData["Pieds"].id }]
+      }
+    },
+    {
+      name: "Tête",
+      slots: {
+        connect: [{ id: slotData["Tête"].id }]
+      }
+    },
+    {
+      name: "Torse",
+      slots: {
+        connect: [{ id: slotData["Torse"].id }]
+      }
+    },
+    {
+      name: "Jambes",
+      slots: {
+        connect: [{ id: slotData["Jambes"].id }]
+      }
+    },
+    {
+      name: "Boucle d'oreille",
+      slots: {
+        connect: [{ id: slotData["Boucle d'oreille"].id }]
+      }
+    },
+    {
+      name: "Amulette",
+      slots: {
+        connect: [{ id: slotData["Amulette"].id }]
+      }
     }
+    
+
   ];
 
   for (const type of equipmentTypes) {
@@ -1098,15 +1215,14 @@ async function main() {
     }
   ]
 
-  // for (const perk of perks) {
-  //   await db.Perk.create({
-  //     data: {
-  //       name: perk.name,
-  //       location: perk.location,
-  //       stats: perk.stats,
-  //     },
-  //   });
-  // }
+  for (const perk of perks) {
+   await db.Perk.create({
+     data: {
+       name: perk.name,
+       location: perk.location,
+    },
+    });
+ }
 
 
   const users = [

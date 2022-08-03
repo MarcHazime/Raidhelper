@@ -15,7 +15,6 @@ app.use(cors({
 app.use(express.json());
 
 app.get('/users', async (req, res) => {
-    console.log("tutu")
     res.send(await prisma.User.findMany())
 })
 
@@ -65,16 +64,3 @@ app.post("/users", async (req, res) => {
     }
 })
 
-// Serve REACT APP
-app.use(express.static(path.join(__dirname, "dist")));
-
-// Redirect all requests to the REACT app
-app.get("*", (req, res) => {
-    res.sendFile(
-        path.join(__dirname,"dist", "index.html")
-    );
-});
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})

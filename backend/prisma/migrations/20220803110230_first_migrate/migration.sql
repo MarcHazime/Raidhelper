@@ -19,11 +19,11 @@ CREATE TABLE `Perk` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Slot` (
+CREATE TABLE `Slots` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(150) NOT NULL,
 
-    UNIQUE INDEX `Slot_name_key`(`name`),
+    UNIQUE INDEX `Slots_name_key`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -66,16 +66,16 @@ CREATE TABLE `_EquipmentTypeToPerk` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `_EquipmentTypeToSlot` (
+CREATE TABLE `_EquipmentTypeToSlots` (
     `A` INTEGER NOT NULL,
     `B` INTEGER NOT NULL,
 
-    UNIQUE INDEX `_EquipmentTypeToSlot_AB_unique`(`A`, `B`),
-    INDEX `_EquipmentTypeToSlot_B_index`(`B`)
+    UNIQUE INDEX `_EquipmentTypeToSlots_AB_unique`(`A`, `B`),
+    INDEX `_EquipmentTypeToSlots_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Equipment` ADD CONSTRAINT `Equipment_slotId_fkey` FOREIGN KEY (`slotId`) REFERENCES `Slot`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Equipment` ADD CONSTRAINT `Equipment_slotId_fkey` FOREIGN KEY (`slotId`) REFERENCES `Slots`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Equipment` ADD CONSTRAINT `Equipment_equipmentTypeId_fkey` FOREIGN KEY (`equipmentTypeId`) REFERENCES `EquipmentType`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -93,7 +93,7 @@ ALTER TABLE `_EquipmentTypeToPerk` ADD CONSTRAINT `_EquipmentTypeToPerk_A_fkey` 
 ALTER TABLE `_EquipmentTypeToPerk` ADD CONSTRAINT `_EquipmentTypeToPerk_B_fkey` FOREIGN KEY (`B`) REFERENCES `Perk`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `_EquipmentTypeToSlot` ADD CONSTRAINT `_EquipmentTypeToSlot_A_fkey` FOREIGN KEY (`A`) REFERENCES `EquipmentType`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `_EquipmentTypeToSlots` ADD CONSTRAINT `_EquipmentTypeToSlots_A_fkey` FOREIGN KEY (`A`) REFERENCES `EquipmentType`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `_EquipmentTypeToSlot` ADD CONSTRAINT `_EquipmentTypeToSlot_B_fkey` FOREIGN KEY (`B`) REFERENCES `Slot`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `_EquipmentTypeToSlots` ADD CONSTRAINT `_EquipmentTypeToSlots_B_fkey` FOREIGN KEY (`B`) REFERENCES `Slots`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

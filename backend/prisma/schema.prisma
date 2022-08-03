@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -21,12 +21,12 @@ model User {
 model Perk {
   id         Int             @id @default(autoincrement())
   name       String          @unique @db.VarChar(150)
-  stats      String          @db.VarChar(255)
+  location      String          @db.VarChar(255)
   types      EquipmentType[]
   equipments Equipment[]
 }
 
-model Slot {
+model Slots {
   id         Int             @id @default(autoincrement())
   name       String          @unique @db.VarChar(150)
   equipments Equipment[]
@@ -36,7 +36,7 @@ model Slot {
 model Equipment {
   id              Int           @id @default(autoincrement())
   name            String        @unique @db.VarChar(150)
-  slot            Slot          @relation(fields: [slotId], references: [id])
+  slot            Slots          @relation(fields: [slotId], references: [id])
   slotId          Int
   type            EquipmentType @relation(fields: [equipmentTypeId], references: [id])
   equipmentTypeId Int
@@ -48,5 +48,5 @@ model EquipmentType {
   name       String      @unique @db.VarChar(150)
   equipments Equipment[]
   perks      Perk[]
-  slots      Slot[]
+  slots      Slots[]
 }
